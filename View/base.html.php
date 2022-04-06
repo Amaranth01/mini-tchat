@@ -35,11 +35,14 @@ if (isset($_SESSION['success'])) {
 }
 ?>
 
-    <div class="tchat">
-
-    </div>
-
-    <textarea name="" id="" cols="60" rows="10"></textarea>
+<div>
+    <nav>
+        <ul>
+            <li><a href="">Déconnexion</a></li>
+            <li><a href="">Connexion / Inscription</a></li>
+        </ul>
+    </nav>
+</div>
     <main class="container">
         <?= $html ?>
     </main>

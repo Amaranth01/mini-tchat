@@ -4,3 +4,12 @@
     <br>
     Les seules obligations sont le respect des autres, avoir une bonne dose d'humour et de bonne humeur !
 </p>
+
+<div class="tchat">
+
+</div>
+
+<label for="tchat">Entrez votre message</label>
+<textarea name="" id="tchat" cols="60" rows="5"></textarea>.
+
+<input type="submit" name="submit" value="Envoyer">

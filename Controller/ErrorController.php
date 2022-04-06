@@ -2,7 +2,9 @@
 
 namespace App;
 
-class ErrorController
+use App\Controller\AbstractController;
+
+class ErrorController extends AbstractController
 {
     /**
      * Control the error page.
@@ -10,6 +12,6 @@ class ErrorController
      */
     public function error404()
     {
-        require __DIR__ . '/../View/error/404.html.php';
+        $this->render('error/404');
     }
 }
