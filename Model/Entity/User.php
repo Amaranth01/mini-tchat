@@ -18,6 +18,7 @@ class user extends AbstractEntity
 
     /**
      * @param string $username
+     * @return user
      */
     public function setUsername(string $username): self
     {
@@ -35,10 +36,12 @@ class user extends AbstractEntity
 
     /**
      * @param string $email
+     * @return user
      */
     public function setEmail(string $email): self
     {
         $this->email = $email;
+        return $this;
     }
 
     /**
@@ -51,11 +54,11 @@ class user extends AbstractEntity
 
     /**
      * @param string $password
+     * @return user
      */
     public function setPassword(string $password): self
     {
         $this->password = $password;
+        return $this;
     }
-
-
 }

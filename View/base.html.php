@@ -38,8 +38,8 @@ if (isset($_SESSION['success'])) {
 <div>
     <nav>
         <ul>
-            <li><a href="">Déconnexion</a></li>
-            <li><a href="">Connexion / Inscription</a></li>
+            <li><a href="/index.php?c=logout&a=logout">Déconnexion</a></li>
+            <li><a href="/index.php?c=user&a=conn">Connexion / Inscription</a></li>
         </ul>
     </nav>
 </div>

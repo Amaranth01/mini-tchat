@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\DB;
 use App\Model\Entity\User;
 
 class UserManager
@@ -25,16 +26,15 @@ class UserManager
      * @param int $id
      * @return User
      */
-    public static function getUser(int $id): ?User
+    public function getUser(int $id): ?User
     {
-        $result = DB::getPDO()->query("SELECT * FROM user WHERE id = '$id'");
-        return $result ? self::createUser($result->fetch()) : null;
-    }
+        $user = null;
+        $query = DB::getPDO()->query("SELECT * FROM user  WHERE id = '$id'");
 
-    public static function mailExist(string $mail): ?array
-    {
-        $stmt = DB::getPDO()->query("SELECT count(*) FROM user WHERE email = '$mail'");
-        return $stmt->fetch();
+        if ($query && $data = $query->fetch()) {
+            $user = self::createUser($data);
+        }
+        return $user;
     }
 
     /**
@@ -56,5 +56,28 @@ class UserManager
         $user->setId(DB::getPDO()->lastInsertId());
 
         return $result;
+    }
+
+    /**
+     * Checks if an email address is already present in the DB.
+     * @param string $mail
+     * @return array
+     */
+    public static function mailExists(string $mail): ?array
+    {
+        $result = DB::getPDO()->query("SELECT count(*) FROM user WHERE email = '$mail'");
+        return $result->fetch();
+    }
+
+    /**
+     * Find a user by email
+     * @param string $email
+     * @return User|null
+     */
+    public static function getUserByMail(string $email): ?User
+    {
+        $stmt = DB::getPDO()->prepare("SELECT * FROM user WHERE email = :email LIMIT 1");
+        $stmt->bindParam(':email', $email);
+        return $stmt->execute() ? self::createUser($stmt->fetch()) : null;
     }
 }

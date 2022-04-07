@@ -1,6 +1,10 @@
 <?php
 
+namespace App\Model;
+
 use App\Config;
+use PDO;
+use PDOException;
 
 class DB
 {

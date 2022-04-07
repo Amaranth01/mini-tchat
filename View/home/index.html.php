@@ -9,7 +9,7 @@
 
 </div>
 
-<label for="tchat">Entrez votre message</label>
-<textarea name="" id="tchat" cols="60" rows="5"></textarea>.
+<label for="tchatMessage">Entrez votre message</label>
+<textarea name="" id="tchatMessage" cols="60" rows="5"></textarea>.
 
 <input type="submit" name="submit" value="Envoyer">
