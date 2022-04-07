@@ -1,7 +1,10 @@
 <?php
 
+namespace App\Model\Entity;
+
 use App\Model\Entity\AbstractEntity;
 use App\Model\Entity\user;
+use DateTime;
 
 class Message extends AbstractEntity
 {
