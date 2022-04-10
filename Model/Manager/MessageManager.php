@@ -1,28 +1,40 @@
 <?php
 
+namespace App\Model\Manager;
+
 use App\Model\DB;
 use App\Model\Entity\Message;
 
 class MessageManager
 {
-    public function getMessage()
+    public static function getMessage(): array
     {
+        $messages = [];
         $result = DB::getPDO()->query("SELECT * FROM message ORDER BY date DESC LIMIT 30 ");
-        $message = $result->fetchAll();
+        if($result) {
+            $messageManager = new MessageManager();
+
+            foreach ($result->fetchAll() as $messageData) {
+                $messages[] = (new Message())
+                    ->setContent($messageData['content'])
+                    ->setUser($messageData['user_id1'])
+                    ;
+            }
+        }
+        return $messages;
+
     }
 
     public static function addMessage(Message $message): bool
     {
         $stmt = DB::getPDO()->prepare("
-            INSERT INTO message (id, content, user_id1) VALUES (:id, :content, :user)
+            INSERT INTO message (content, date, user_id1) VALUES (:content, :date, :user)
         ");
 
-        $stmt->bindValue(':id', $message->getId());
         $stmt->bindValue(':content', $message->getContent());
-        $stmt->bindValue(':user', $message->getUser()->getId());
+        $stmt->bindValue(':date', $message->getDate());
+        $stmt->bindValue(':user', $message->getUser());
 
-        $result = $stmt->execute();
-        $message->setId(DB::getPDO()->lastInsertId());
-        return $result;
+        return $stmt->execute();
     }
 }

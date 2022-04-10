@@ -2,15 +2,23 @@
 
 namespace App\Model\Entity;
 
-use App\Model\Entity\AbstractEntity;
 use App\Model\Entity\user;
 use DateTime;
 
-class Message extends AbstractEntity
+class Message
 {
+    private int $id;
     private string $content;
     private DateTime $date;
-    private User $user;
+    private int $userId;
+
+    /**
+     * @return int|null
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     /**
      * @return string
@@ -49,20 +57,20 @@ class Message extends AbstractEntity
     }
 
     /**
-     * @return user
+     * @return int
      */
-    public function getUser(): user
+    public function getUser(): int
     {
-        return $this->user;
+        return $this->userId;
     }
 
     /**
-     * @param user $user
+     * @param int $userId
      * @return Message
      */
-    public function setUser(user $user): self
+    public function setUser(int $userId): self
     {
-        $this->user = $user;
+        $this->userId = $userId;
         return $this;
     }
 

@@ -52,10 +52,7 @@ class UserManager
         $stmt->bindValue('username', $user->getUsername());
         $stmt->bindValue('password', $user->getPassword());
 
-        $result = $stmt->execute();
-        $user->setId(DB::getPDO()->lastInsertId());
-
-        return $result;
+        return $stmt->execute();
     }
 
     /**
@@ -72,7 +69,7 @@ class UserManager
     /**
      * Find a user by email
      * @param string $email
-     * @return User|null
+     * @return null
      */
     public static function getUserByMail(string $email): ?User
     {
