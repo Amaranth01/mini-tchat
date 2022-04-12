@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 65.5%;
+}
+
+body {
+    background-color: #e79908;
+}
+
+a {
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+}
+
+/*message*/
+
+.message {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+.error, .success {
+    color: white;
+    width: 15vw;
+    margin-left: 0.5rem;
+}
+
+.error {
+    background-color: darkred;
+}
+
+.success {
+    background-color: green;
+}
+
+/*Main link*/
+nav > ul {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-right: 1rem;
+}
+
+li {
+    list-style: none;
+    padding: 0.5rem;
+}
+
+/*Main index*/
+
+h1 {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.introduction {
+    font-size: 1.5rem;
+    margin-left: 3rem;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    border: black solid 2px;
+    padding: 0.5rem;
+    width: 50vw;
+    margin-left: 25vw;
+    margin-top: 2rem;
+    border-radius: 5px;
+    background-color: #d8e752;
+}
+
+.tchat {
+    font-size: 1.5rem;
+}
+
+.user {
+    color: indigo;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#tchatMessage, #addMessage {
+    margin-top: 1rem;
+    margin-left: 35vw;
+    background-color: #d8e752;
+}
+
+.connexionMessage {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+/*form style*/
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+label, input {
+    margin-top: 0.5rem;
+}
+
+.button {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+}
+
+.register {
+    text-align: center;
+    margin-top: 2rem;
+}

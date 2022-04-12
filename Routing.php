@@ -68,7 +68,7 @@ class Routing
         $paramController = self::param('c', 'home');
         $action = self::param('a');
         $controller = self::guessController($paramController);
-        $id = self::param('id');
+        $id = self::param('api');
 
         //Returns the error page if the controller is not found, and we quit the script
         if($controller instanceof ErrorController) {

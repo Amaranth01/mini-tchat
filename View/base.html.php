@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/asset/style.css">
+    <link rel="stylesheet" href="/asset/css/style.css">
 </head>
 <body>
 
@@ -33,14 +33,22 @@ if (isset($_SESSION['success'])) {
         <?= $success ?>
     </div> <?php
 }
-var_dump($_SESSION['user']);
 ?>
-
+<h1>Bienvenue sur le tchat d'entraide </h1>
 <div>
     <nav>
         <ul>
-            <li><a href="/index.php?c=logout&a=logout">Déconnexion</a></li>
-            <li><a href="/index.php?c=user&a=conn">Connexion / Inscription</a></li>
+            <?php
+            //Remove the link if the user is not logged in
+            if(UserController::userConnected()) { ?>
+                <li><a href="/index.php?c=logout&a=logout">Déconnexion</a></li>
+                <?php
+            }
+            else { ?>
+                <li><a href="/index.php?c=user&a=conn">Connexion / Inscription</a></li>
+                <?php
+            }
+            ?>
         </ul>
     </nav>
 </div>
@@ -49,7 +57,7 @@ var_dump($_SESSION['user']);
     </main>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="/asset/message.js"
-<script src="/asset/app.js"></script>
+<script src="/asset/js/message.js"></script>
+<script src="/asset/js/app.js"></script>
 </body>
 </html>

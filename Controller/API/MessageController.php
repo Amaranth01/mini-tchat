@@ -1,25 +1,31 @@
 <?php
 
-use App\Controller\AbstractController;
-use App\Model\Entity\Message;
 use App\Model\Manager\MessageManager;
 
-class MessageController extends AbstractController
+class MessageController
 {
-    public function addMessage($payload)
+    public function addMessage()
     {
-        $content = $this->clean($payload->content);
+        $messageManager = new MessageManager();
+        $array = [];
 
-        $message = (new Message())
-            ->setContent($content)
-            ->setUser($_SESSION['user']->getId())
-            ->setDate(new DateTime())
-            ;
+        foreach($messageManager->getMessage() as $value) {
+            $sent = false;
+            if ($value->getUser()->getId() === $_SESSION['user']->getId()) {
+                $sent = true;
+            }
 
-        if (MessageManager::addMessage($message)) {
-            http_response_code(200);
-            exit;
+            $array[] = [
+                'id' => $value->getId(),
+                'content' => $value->getContent(),
+                'dateTime' => $value->getDate()->format('D H:i:s'),
+                'username' => $value->getUser()->getUsername(),
+                'sent' => $sent,
+            ];
         }
+
+        echo json_encode($array);
+
         http_response_code(200);
         exit;
     }

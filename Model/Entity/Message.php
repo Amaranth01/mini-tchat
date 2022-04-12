@@ -3,14 +3,12 @@
 namespace App\Model\Entity;
 
 use App\Model\Entity\user;
-use DateTime;
 
 class Message
 {
     private int $id;
     private string $content;
-    private DateTime $date;
-    private int $userId;
+    private User $user;
 
     /**
      * @return int|null
@@ -19,6 +17,17 @@ class Message
     {
         return $this->id;
     }
+
+    /**
+     * @param int $id
+     * @return Message
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
 
     /**
      * @return string
@@ -39,38 +48,20 @@ class Message
     }
 
     /**
-     * @return DateTime
+     * @return user
      */
-    public function getDate(): DateTime
+    public function getUser(): User
     {
-        return $this->date;
+        return $this->user;
     }
 
     /**
-     * @param DateTime $date
+     * @param User $user
      * @return Message
      */
-    public function setDate(DateTime $date): self
+    public function setUser(User $user): self
     {
-        $this->date = $date;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getUser(): int
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @param int $userId
-     * @return Message
-     */
-    public function setUser(int $userId): self
-    {
-        $this->userId = $userId;
+        $this->user = $user;
         return $this;
     }
 

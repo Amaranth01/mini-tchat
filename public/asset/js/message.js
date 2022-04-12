@@ -4,6 +4,7 @@ if(addMessage) {
         const xhr = new XMLHttpRequest();
         xhr.responseType = 'json';
 
+        //Retrieves message content
         const messageContent = {
             content : document.getElementById('tchatMessage').value
         };

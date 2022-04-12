@@ -4,37 +4,53 @@ namespace App\Model\Manager;
 
 use App\Model\DB;
 use App\Model\Entity\Message;
+use UserManager;
 
 class MessageManager
 {
     public static function getMessage(): array
     {
         $messages = [];
-        $result = DB::getPDO()->query("SELECT * FROM message ORDER BY date DESC LIMIT 30 ");
-        if($result) {
-            $messageManager = new MessageManager();
-
-            foreach ($result->fetchAll() as $messageData) {
-                $messages[] = (new Message())
-                    ->setContent($messageData['content'])
-                    ->setUser($messageData['user_id1'])
-                    ;
+        $stmt = DB::getPDO()->query("SELECT * FROM message ORDER BY id DESC LIMIT 30 ");
+        if($stmt) {
+            $userManager = new UserManager();
+            foreach ($stmt->fetchAll() as $value) {
+                $messages[] = self::createMessage($value, $userManager);
             }
         }
         return $messages;
 
     }
 
-    public static function addMessage(Message $message): bool
+    /**
+     * Add a new message
+     * @param $content
+     * @param $user
+     * @return bool
+     */
+    public static function addMessage($content, $user): bool
     {
         $stmt = DB::getPDO()->prepare("
-            INSERT INTO message (content, date, user_id1) VALUES (:content, :date, :user)
+            INSERT INTO message (content, user_id1) VALUES (:content, :user)
         ");
 
-        $stmt->bindValue(':content', $message->getContent());
-        $stmt->bindValue(':date', $message->getDate());
-        $stmt->bindValue(':user', $message->getUser());
+        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':user', $user);
 
-        return $stmt->execute();
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private static function createMessage(array $data, $userManager): Message
+    {
+
+        return (new Message())
+            ->setId($data['id'])
+            ->setUser($userManager->getUser($data['user_id1']))
+            ->setContent($data['content'])
+            ;
     }
 }

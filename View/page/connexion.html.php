@@ -1,6 +1,6 @@
 <h1>Connectez-vous</h1>
 
-    <form action="/index.php?c=user&a=connexion" method="post" id="form">
+    <form action="/index.php?c=user&a=connexion" method="post" class="form">
         <label for="username">Pseudo</label>
         <input type="text" name="username" id="username">
 
@@ -13,4 +13,4 @@
         <input type="submit" name="submit" value="Envoyer">
     </form>
 
-    <p>Pas de compte ? <a href="/index.php?c=user&a=reg">Inscrivez-vous !</a></p>
+    <p class="register">Pas de compte ? <a href="/index.php?c=user&a=reg">Inscrivez-vous !</a></p>
