@@ -98,6 +98,10 @@ h1 {
     background-color: #d8e752;
 }
 
+#addMessage {
+    margin-left: 0;
+}
+
 .connexionMessage {
     text-align: center;
     font-size: 1.5rem;
