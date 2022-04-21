@@ -55,14 +55,13 @@ class UserController extends AbstractController
                 $_SESSION['errors'] = $error;
             } else {
                 //If no error is detected the program goes to else and authorizes the recording
-                $user = new User();
-                $user
+                $user = (new User())
                     ->setUsername($username)
                     ->setEmail($mail)
                     ->setPassword(password_hash($password, PASSWORD_DEFAULT))
                 ;
                 //If no email is found, we launch the addUser function
-                if(0 == UserManager::mailExists($user->getEmail())['count(*)']) {
+                if(0 == UserManager::getUserByMail($user->getEmail())['count(*)']) {
                     UserManager::addUser($user);
                     //If the ID is not null, we pass the user in the session
                     if (null!== $user->getId()) {
@@ -95,7 +94,7 @@ class UserController extends AbstractController
             $username = $this->clean($this->formField('username'));
 
             //Check that the fields are not empty
-            if (empty($password) || empty($username)) {
+            if (empty($password) || empty($username) ||empty($mail)) {
                 $errorMessage = "L'un des champ est manquant";
                 $_SESSION['errors'][] = $errorMessage;
                 $this->render('home/index');

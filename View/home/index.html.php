@@ -6,8 +6,8 @@
 <div id="content">
 
 <?php
-use App\Model\Manager\MessageManager;?>
-    <?php
+use App\Model\Manager\MessageManager;
+
         foreach (MessageManager::getMessage() as $message) {
     ?>
     <div class="tchat">

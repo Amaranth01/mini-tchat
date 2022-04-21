@@ -54,7 +54,6 @@ class Routing
         if (class_exists($controller)) {
             return new $controller();
         }
-        var_dump($controller);
         return new ErrorController();
 
     }
@@ -68,7 +67,6 @@ class Routing
         $paramController = self::param('c', 'home');
         $action = self::param('a');
         $controller = self::guessController($paramController);
-        $id = self::param('api');
 
         //Returns the error page if the controller is not found, and we quit the script
         if($controller instanceof ErrorController) {
@@ -78,16 +76,7 @@ class Routing
 
         //Verification of the presence of controller
         $action = self::guessMethod($controller, $action);
-        //Checks if a controller id is needed
-        if($action !== null) {
-            if ($id !== null) {
-                $controller->$action($id);
-            }
-            else {
-                $controller->$action();
-            }
-        }
-        else {
+        if(null === $action) {
             $controller->index();
         }
     }

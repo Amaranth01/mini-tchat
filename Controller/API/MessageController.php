@@ -18,7 +18,6 @@ class MessageController
             $array[] = [
                 'id' => $value->getId(),
                 'content' => $value->getContent(),
-                'dateTime' => $value->getDate()->format('D H:i:s'),
                 'username' => $value->getUser()->getUsername(),
                 'sent' => $sent,
             ];

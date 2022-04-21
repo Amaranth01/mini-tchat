@@ -1,4 +1,5 @@
 let addMessage = document.querySelector('#addMessage');
+
 if(addMessage) {
     addMessage.addEventListener('click', ()=>{
         const xhr = new XMLHttpRequest();
@@ -23,7 +24,6 @@ if(addMessage) {
 
             const response = xhr.response;
             console.log(response.content);
-            console.log(response.dateTime);
             console.log(response.user);
 
         }
